@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+<title>Birthday Gamesss</title>
+<style>
+:root{
+  --bg:#730d59; 
+  --accent:#e10d65; 
+  --card:#6f165b; 
+  --glass: rgba(245, 74, 213, 0.06);
+  --glass-2: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+body,html{
+  height:100%;
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color:#e6eef8;
+  background: url(game_bg.png);background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+}
+.app{min-height:100vh;display:flex;flex-direction:column;align-items:center;}
+header{
+  width:100%;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background-color: #4d153b;
+  position:fixed;
+  top:0;
+  border-bottom: 1px solid white;
+  left:0;
+  z-index:40
+}
+.logo{display:flex;gap:12px;align-items:center}
+.logo .dot{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),#89116b);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:#ffffff
+}
+main{width:100%;max-width:1100px;margin-top:88px;padding:20px}
+h1,h2,h3{margin:0 0 10px}
+.small{font-size:13px;color:#bcdcff}
+.btn{background:linear-gradient(90deg,var(--accent),#ff9aa2);border:none;padding:12px 18px;border-radius:12px;color:rgb(255, 255, 255);font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(255,107,129,0.16)}
+.card{background:var(--card);padding:16px;border-radius:12px;border:1px solid #dddddd;margin-bottom:20px}
+.balloons{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  justify-items:center;
+  align-items:end;
+  gap:12px;
+  height:auto;
+}
+.balloon.game{
+  cursor:pointer;
+  transform-origin:center bottom;
+  transition:transform .18s;
+  font-size:60px; /* bigger balloons */
+}
+.popped{transform:scale(0);opacity:0;transition:all .3s}
+.cards{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.flip{width:130px;height:160px;perspective:800px}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s}
+.flip.is-flipped .flip-inner{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;border:1px solid rgba(255,255,255,0.04)}
+.flip-front{background:linear-gradient(180deg,#4e172f,#4b193a)}
+.flip-back{transform:rotateY(180deg);background:linear-gradient(180deg,#eb66c3,#f85a9e);color:#1b1130}
+.flip.matched{outline:2px solid rgba(255,223,170,0.12)}
+h3{margin-bottom:6px}
+footer{padding:20px;color:#9fc1ff;text-align:center}
+
+/* Reward pop animation */
+@keyframes rewardPop {
+  0% { transform: scale(0.2) rotate(-10deg); opacity: 0; }
+  50% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Confetti animation */
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity:1; }
+  100% { transform: translateY(200px) rotate(360deg); opacity:0; }
+}
+
+.confetti {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--accent);
+  top: 0; left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: confettiFall 1s linear forwards;
+}
+
+@media (max-width:900px){
+  .flip{width:100px;height:140px}
+  .balloon.game{font-size:50px}
+  .balloons{grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width:480px){
+  header{padding:12px}
+  main{padding:12px;margin-top:84px}
+  .balloon.game{font-size:40px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">
+      <div class="dot">😋</div>
+      <div>
+        <div style="font-weight:700;color:#ffffff;"><i>Birthday Games for Youuuu</i> (*^_^*)</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="games">
+      <h2><i>Play & Win Exciting Birthday Surprises Kuchupuchuuuuuu</i> ❤️😊</h2>
+      
+      <div class="card">
+        <h3><i>Pop the Balloons</i></h3>
+        <div class="small" style="margin-bottom:10px;"><i>Rules: Pop all the <strong id="balloonAllowed">6</strong> balloons to reveal your Birthday Surprise! 😊</i></div>
+        <div class="balloons" id="gameBalloons"></div>
+        <div style="margin-top:10px"><i>Pops left: <span id="popsLeft">6</span></i></div>
+      </div>
+
+      <div class="card">
+        <h3><i>Flip the Cards</i></h3>
+        <div class="small" style="margin-bottom:10px;"><i>Rules: Flip all the <strong id="flipAllowed">6</strong> cards and find Matching pairs for your Brithday Surprise! 😊</i></div>
+        <div class="cards" id="cardArea"></div>
+        <div style="margin-top:10px"><i>Flips left: <span id="flipsLeft">6</span></i></div>
+      </div>
+
+      <div class="card">
+       <i> <h3>Your Surprises</h3>
+        <div id="rewardsList" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"></div>
+        <button class="btn" style="margin-top:12px" onclick="clearRewards()">Clear</button>
+      </div></i>
+    </section>
+  </main>
+
+  <!-- Added Move to Home Button -->
+  <a href="index.html" class="btn" style="margin-bottom:10px;text-decoration: none;background:linear-gradient(90deg,var(--accent),#b631bb)">Move to Home Page</a>
+
+  <footer><i>Made with love 💌</i></footer>
+</div>
+
+<script>
+  const FLIP_REWARDS = [
+  {name: 'Video while doing random things', emoji:'📹'}, 
+  {name: 'kiss ur lips twice on our next date', emoji:'🤭'}, 
+  {name: 'Plan our next date and do crazy things', emoji:'😋'}, 
+  {name: 'Send you a Voice Note', emoji:'🎤'}, 
+  {name: 'Share a cute selfie', emoji:'📸'}, 
+  {name: 'Send you a Song That Reminds You of Me', emoji:'🎵'}
+];
+
+const REWARDS=[
+  {name:'Cuddle Coupon useage limit : none', emoji:'🤗'},
+  {name:'20 Kisses on our next Date Coupon Useage limit : You can set', emoji:'😘'},
+  {name:'Make me do Whatever You Want Coupon Useage limit : 10', emoji:'🤭'},
+  {name:'Listen to Me for a Day Coupon Useage limit : 5', emoji:'🥹'},
+  {name:'Pics on whatever Pose or Face You want Useage limit : none', emoji:'😁'},
+  {name:'A love letter on Our next Date', emoji:'💌'}
+];
+let popsAllowed=6, popsLeft=6, flipsAllowed=6, flipsLeft=6;
+
+// --- Reward Animations ---
+function showConfetti(){
+  for(let i=0;i<15;i++){
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = (Math.random() * window.innerWidth) + 'px';
+    c.style.background = `hsl(${Math.random()*360}, 70%, 60%)`;
+    c.style.animationDuration = 0.8 + Math.random() * 0.7 + 's';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 1500);
+  }
+}
+
+// --- Rewards ---
+function renderRewards(){
+  const box=document.getElementById('rewardsList');
+  if(!box) return;
+  box.innerHTML='';
+  const current=JSON.parse(localStorage.getItem('rewards')||'[]');
+  current.forEach(r=>{
+    const el=document.createElement('div');
+    el.className='card';
+    el.style.padding='10px';
+    el.style.minWidth='120px';
+    el.innerHTML=`<div style="font-weight:700">${r.name}</div><div style="font-size:20px">${r.emoji}</div>`;
+    box.appendChild(el);
+  });
+}
+function addReward(r){
+  const cur=JSON.parse(localStorage.getItem('rewards')||'[]');
+  cur.unshift(r);
+  localStorage.setItem('rewards',JSON.stringify(cur));
+  renderRewards();
+
+  // Animate the reward card
+  const box = document.getElementById('rewardsList');
+  if(box && box.firstChild){
+    box.firstChild.style.animation = 'rewardPop 0.5s ease';
+  }
+
+  // Show confetti
+  showConfetti();
+}
+function clearRewards(){
+  if(confirm('Clear all rewards?')){
+    localStorage.removeItem('rewards');
+    renderRewards();
+  }
+}
+
+// --- Balloons ---
+function setupBalloons(){
+  const el=document.getElementById('gameBalloons');
+  if(!el) return;
+  el.innerHTML='';
+  popsLeft=popsAllowed;
+  document.getElementById('popsLeft').innerText=popsLeft;
+  for(let i=0;i<6;i++){
+    const b=document.createElement('div');
+    b.className='balloon game balloon-'+(i+1);
+    b.dataset.index=i;
+    b.textContent='🎈';
+    b.onclick=()=>popBalloon(b);
+    el.appendChild(b);
+  }
+}
+function popBalloon(b){
+  if(popsLeft<=0){alert('No pops left!');return}
+  if(b.classList.contains('popped')) return;
+  popsLeft--; document.getElementById('popsLeft').innerText=popsLeft;
+  b.classList.add('popped');
+  const reward=REWARDS[Math.floor(Math.random()*REWARDS.length)];
+  addReward(reward);
+  alert(`You won: ${reward.name} ${reward.emoji}`);
+}
+
+// --- Flip Cards ---
+// --- Flip Cards ---
+let cardValues=[], flipped=[], matchedCount=0;
+function setupCards(){
+  const area=document.getElementById('cardArea'); if(!area) return;
+  area.innerHTML=''; flipsLeft=flipsAllowed;
+  document.getElementById('flipsLeft').innerText=flipsLeft;
+  document.getElementById('flipAllowed').innerText=flipsAllowed;
+  
+  const pool=[...FLIP_REWARDS.slice(0,3)]; // new rewards pool for flip cards
+  cardValues=shuffle([...pool,...pool]);
+  matchedCount=0; flipped=[];
+  
+  cardValues.forEach((v,idx)=>{
+    const wrap=document.createElement('div');
+    wrap.className='flip';
+    wrap.innerHTML=`<div class='flip-inner' data-id='${idx}'>
+      <div class='flip-face flip-front' style='font-size:18px'>?</div>
+      <div class='flip-face flip-back'>${v.emoji}<div style='margin-top:8px;font-weight:700'>${v.name}</div></div>
+    </div>`;
+    wrap.addEventListener('click',()=>flipCard(wrap));
+    area.appendChild(wrap);
+  });
+}
+function flipCard(wrap){
+  if(wrap.classList.contains('matched') || wrap.classList.contains('is-flipped') || flipped.length>=2 || flipsLeft<=0) return;
+  const inner = wrap.querySelector('.flip-inner'); if(!inner) return;
+  const idx = Number(inner.dataset.id);
+  wrap.classList.add('is-flipped'); flipped.push({wrap, idx}); flipsLeft--;
+  document.getElementById('flipsLeft').innerText=flipsLeft;
+
+  if(flipped.length===2){
+    const [a,b] = flipped;
+    const valA=cardValues[a.idx]; const valB=cardValues[b.idx];
+    if(valA.name===valB.name){
+      a.wrap.classList.add('matched'); b.wrap.classList.add('matched'); matchedCount+=2;
+      addReward(valA); alert(`Match! You won: ${valA.name} ${valA.emoji}`);
+      flipped=[];
+    } else {
+      setTimeout(()=>{
+        a.wrap.classList.remove('is-flipped'); b.wrap.classList.remove('is-flipped');
+        flipped=[]; flipsLeft=flipsAllowed; document.getElementById('flipsLeft').innerText=flipsLeft;
+      },900);
+    }
+  }
+}
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+// --- Init ---
+setupBalloons(); setupCards(); renderRewards();
+</script>
+</body>
+</html>

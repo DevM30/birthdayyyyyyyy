@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <title>Letters</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background:url(let_bg.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #333;
+      line-height: 1.6;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #363636;
+      letter-spacing: 2px;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: #e07a7a;
+      border-radius: 2px;
+    }
+
+    .letters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex-grow: 1;
+    }
+
+    .letter-card {
+      background: url(let_theme.jpg) ;
+      border-radius: 20px;
+      border: 1px solid black;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .letter-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .letter-header h2 {
+      color: #0c0c0c;
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .letter-content {
+      font-size: 1rem;
+      color: #000000;
+      text-align: justify;
+      white-space: pre-line;
+    }
+
+    .next-btn {
+      display: block;
+      width: 180px;
+      margin: 50px auto 20px;
+      padding: 12px 20px;
+      background: linear-gradient(to right, #dd4646, #d38032);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .next-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    footer {
+      text-align: center;
+      color: #201f1f;
+      font-size: 0.9rem;
+      margin-top: auto;
+      padding-top: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .letters {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 15px;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .letter-header h2 {
+        font-size: 1.4rem;
+      }
+
+      .letter-content {
+        font-size: 0.95rem;
+      }
+
+      .next-btn {
+        width: 160px;
+        font-size: 0.95rem;
+        padding: 10px 18px;
+        margin: 40px auto 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .letters {
+        gap: 25px;
+      }
+
+      .letter-content {
+        font-size: 0.9rem;
+      }
+
+      .next-btn {
+        width: 140px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><i>Letters For Youuu</i></h1>
+  </header>
+
+  <section class="letters">
+    <!-- Letter 1 -->
+    <div class="letter-card">
+      <div class="letter-header"><h2><i>"Birthday Messageee 💌"</i></h2></div>
+      <div class="letter-content"><i>
+My Dearest Prodiptaaaaaaa, Kucupuchuuuuuuuu, Rosomalaiiiiiiiii,
+
+Happy Birthdayyyyyyy! 🎉💖 Today is all about celebrating you — the most amazing, beautiful, and incredible person in my life. You light up every room you walk into and make everything brighter just by being you.
+
+I hope today is filled with endless laughter, happiness, and everything your heart desires. You deserve the world and more, and I feel so lucky to be the one who gets to love you, care for you, and be by your side through it all.
+
+You’re my sunshine on cloudy days, my safe place when life feels heavy, and the reason my heart smiles every single day. I love every little thing about you — your smile, your laugh, your kindness, and the way you make even ordinary moments feel magical. And I fell short of words againn 😭.
+
+So today, my Kuchupuchuuuuuu, Sweetieee Aloooo, (Ohhh wait what's the use of so many nicknames when my surname will be yours one day 😋🤭) I celebrate you — your heart, your soul, and every wonderful thing that makes you you. I promise to keep cherishing you, making you laugh, and loving you more every day.
+
+Happy Birthday, my love. I love you beyond words, now and always. 💖
+
+Forever yours,
+Tomar Bor, Deeeevvv</i>
+      </div>
+    </div>
+
+    <div class="letter-card">
+      <div class="letter-header"><h2><i>"Zariya Tumhara ❤️"</i></h2></div>
+      <div class="letter-content"><i>
+Zariye tharo, mhane jeevan sikhaayo,
+Dukh ma bhi, sukh ro raas dikhayo.
+Thari aankhan ri jo dekhi mhane,
+Khud ro bhi bhalo, mharo mann ban gayo.
+
+Zariye tharo, khil gayo saaro jag,
+Raat ri andhiyari ma, subah ro rang lag.
+Thare bina bhi, mhane lagge tu hai,
+Har saans ma bas tharo nasha sa hai.
+
+Zariye tharo, mhain hoon yahan,
+Thari mohabbat ro asar jawaan.
+Tu saath rahe, bas yahi dua,
+Jeevan chale, zviriye tharo.</i>
+      </div>
+    </div>
+
+      <div class="letter-card">
+      <div class="letter-header"><h2><i>"Where it all Began 💗"</i></h2></div>
+      <div class="letter-content"><i>
+Probably friends, possibly lovers but definitely not nothing .
+Those were the three thoughts in my mind for the first time when your path crossed mine ,
+When I saw those eyes for the very first time ...
+Then I learned your favourite color, 
+the shade of your skies,
+The way you laugh, the warmth in goodbyes.
+Witnessed how you painted a smile on my usual frown, Turned all my silences gently around....
+I started practicing learning you , thinking about you a little too much in my spare time .
+Then the three thoughts started to rearrange :
+Probably lovers, possibly friends but definitely not nothing .
+
+
+We know the heart’s a muscle - and like all,
+It learns, it remembers the touch, the ache, the yearns.
+An unconscious echo, a silent decree,
+To repeat the rhythm it's come to believe.
+And now, my heart - it knows only you,
+It beats in the pattern of things that you do.
+It knows how you breathe in the still of the night,
+The laughter that flickers like soft candlelight.
+It hears your socks on the tiles at dawn,
+knows the look on your face when your focus is drawn.
+It memorized the sighs that you never quite speak,
+The way your smile warms the curve of your cheek.
+It’s learned the breath from your lips when you're near , And the brave little shiver when you fight back a tear.
+In the network of veins where emotions hide,
+Your every expression now lives deep, stuck inside.
+So when I say my heart knows you - I mean, truly it does, Like it's known you a thousand years - or perhaps it was...
+
+
+Maybe we're still somewhere in between ,
+Not quite defined, yet deeply seen.
+But if love is a rhythm - my heart keeps true ,
+Then mine beats steady -  in time with you .
+Call it what you will, but this much is true :
+You'll never be nothing - you'll always be you...</i>
+      </div>
+    </div>
+
+    <!-- Letter-2 -->
+
+    <div class="letter-card">
+      <div class="letter-header"><h2><i>"We Were Always<br> Almost ❤️"</i></h2></div>
+      <div class="letter-content"><i>
+On a chalky first day, I walked through the door,
+Eyes full of wonder, heart unsure.
+Among strangers ,
+You saw me — and my world tilted right.
+
+But fate, with its quiet, cruel disguise,
+Had wrapped my heart in someone else’s ties.
+So you tucked your crush beneath your chest,
+Buried it gently where silence rests.
+
+You told yourself stories that blurred my face,
+Painted your longing in another place.
+Gaslit your heart to guard the ache,
+Afraid the truth might tear it up.... might make it break.
+
+But the universe is patient, and chemistry knows,
+That love, once sparked, quietly grows.
+In labs with beakers and burning flame,
+Our glances sparked what we couldn't name.
+The air was thick with things unsaid,
+With dreams we shelved and words we fled.
+
+Then came the season of sacred lights,
+Maa Durga danced through Kolkata nights.
+Crowds roared and cymbals rang —
+But all I heard was your laugh, your name.
+
+You reached for my hand, so unsure, so unplanned,
+And time collapsed in that single strand.
+My breath paused, my heart did too —
+The world fell away — there was only you.
+
+Still, I waited — exams, goodbyes,
+The silence stitched with unsent replies.
+Until, like spring through winter’s frost,
+I texted you — and nothing was lost.
+
+We picked up threads never truly torn,
+Two old souls, once classmates ,
+Now, newly reborn as everything.
+From poems shared to hearts unveiled,
+From late-night talks where laughter sailed.
+
+You, the girl who once had to hide her feelings,
+Now walk beside me, arms open wide.
+No secrets left, no silent pain,
+Just love that pours like monsoon rain.
+
+And now, each second with you feels new,
+A thousand lifetimes overdue.
+I see you now — not just as you are,
+But all you were, from near to far.
+
+"The girl whose eyes made space jealous — brighter than the Helix Nebula, softer than any star I’d ever wish upon."
+The quiet chemist of fate and fire,
+The heartbeat behind my deepest desire.
+
+So here we are — no more pretend,
+No false beginnings, just love without end.
+You were never a maybe, never a guess —
+You were my always, hidden in less.
+
+And if they ask where our story began,
+I’ll smile and gently take your hand:
+"In a class full of strangers, you first saw me...
+And the rest — was always meant to be."</i>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Move Next Button -->
+  <a href="games.html" class="next-btn"><i>Move Next →</i></a>
+
+  <footer>
+    <p><i>© 2025 Our Journey Together</i></p>
+  </footer>
+
+</body>
+</html>

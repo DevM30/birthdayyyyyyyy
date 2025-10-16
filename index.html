@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+<title>Happy Birthdayyyyyy</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        min-height: 100vh;
+        width: 100%;
+        background: url('love_bg.jpg') no-repeat center center/cover;
+        background-attachment: fixed;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        position: relative;
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    /* Text container */
+    .content {
+        max-width: 90%;
+        width: 700px;
+        margin: 50px auto;
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.35);
+        border-radius: 20px;
+        backdrop-filter: blur(6px);
+        animation: fadeIn 1s ease-in-out;
+        z-index: 10;
+        position: relative;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff69b4;
+        animation: textDrop 1s ease-out;
+    }
+
+    @keyframes textDrop {
+        0% { opacity: 0; transform: translateY(-40px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    button {
+        padding: 10px 30px;
+        font-size: 1rem;
+        color: #fff;
+        background: linear-gradient(45deg, #ff6ec4, #ff4d6d);
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Floating love emoji animation */
+    .love {
+        position: fixed;
+        font-size: 22px;
+        opacity: 0.8;
+        animation: float 6s linear infinite;
+        z-index: 1;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(110vh) translateX(0) rotate(0deg);
+            opacity: 0.8;
+        }
+        25% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-20vh) translateX(-30px) rotate(-15deg);
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 600px) {
+        h1 { font-size: 1.1rem; }
+        p { font-size: 0.9rem; }
+        button { font-size: 0.9rem; padding: 10px 20px; }
+        .content { padding: 15px; margin: 30px auto; }
+    }
+</style>
+</head>
+<body>
+
+<div class="content">
+    <h1><b><i>Happy Birthday to You, My Love ❤️</i></b></h1>
+    <p><b><i>
+       <br> Prodiptaaaa... Kucupuchuuuu.... Happy 18th anddddd finally my wifeyyy, my rosomalaiiiii, my 5starrrr, my sweetieee alooo is legalllll.
+        And now I'm legal tooo yayyyyyy 😭 and waitttt my bubububuuuus, pusupusuuuuu and petupetuuuu all are legal tooo 😋👽
+        <br></br>Today is your day — a celebration of you, your laughter, your beauty, and your heart.
+        Every moment with you feels like a gift, and I’m endlessly thankful to have you in my life.
+        Wishing you all the happiness, warmth, and magic this world can offer. 💖
+        I'll always be there for youu in every moment of your life.</p>
+        <p>Forever Yoursss,<br>
+        Deeevv ❤️ </i></b></p>
+    <button onclick="startCelebration()">Start Celebration 🎉</button>
+</div>
+
+<script>
+function startCelebration() {
+    window.location.href = 'memory.html';
+}
+
+// Floating love emojis across the full screen
+const emojis = ['❤️','💕','❤️','💕','💗','💓'];
+function createLoveEmoji() {
+    const love = document.createElement('div');
+    love.className = 'love';
+    love.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    love.style.left = Math.random() * 100 + 'vw';
+    love.style.top = Math.random() * 100 + 'vh';
+    love.style.fontSize = (16 + Math.random() * 30) + 'px';
+    love.style.animationDuration = (5 + Math.random() * 5) + 's';
+    document.body.appendChild(love);
+
+    setTimeout(() => love.remove(), 9000);
+}
+
+setInterval(createLoveEmoji, 300);
+</script>
+
+</body>
+</html>

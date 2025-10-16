@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <title>Memory Lane</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: url(mem_bg.jpg)no-repeat center center/cover;
+      color: #eaeaea;
+      line-height: 1.6;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #dedbdb;
+      letter-spacing: 2px;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: #d5d5d5;
+      border-radius: 2px;
+    }
+
+    .memories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex-grow: 1;
+    }
+
+    .memory-card {
+      background: rgba(246, 245, 245, 0.75);
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 1px solid rgb(20, 12, 12);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .memory-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .memory-header {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(to right, #e14444, #e6ebf8);
+    }
+
+    .memory-header h2 {
+      color: rgb(46, 45, 45);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .memory-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .memory-text {
+      padding: 20px;
+      color: #555;
+      font-size: 1rem;
+      text-align: justify;
+    }
+
+    .next-btn {
+      display: block;
+      width: 180px;
+      margin: 50px auto 20px;
+      padding: 12px 20px;
+      background: linear-gradient(to right, #db2626, #4f9fe9);
+      color: rgb(255, 253, 253);
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 30px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .next-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    footer {
+      text-align: center;
+      color: #575656;
+      font-size: 0.9rem;
+      margin-top: auto;
+      padding-top: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .memories {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .memory-img {
+        height: 230px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 15px;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .memory-header h2 {
+        font-size: 1.3rem;
+      }
+
+      .memory-img {
+        height: 300px;
+      }
+
+      .memory-text {
+        font-size: 0.95rem;
+      }
+
+      .next-btn {
+        width: 160px;
+        font-size: 0.95rem;
+        padding: 10px 18px;
+        margin: 40px auto 15px;
+      }
+    }
+     /* Floating love emoji animation */
+    .love {
+        position: fixed;
+        font-size: 22px;
+        opacity: 0.8;
+        animation: float 6s linear infinite;
+        z-index: 1;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(110vh) translateX(0) rotate(0deg);
+            opacity: 0.8;
+        }
+        25% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-20vh) translateX(-30px) rotate(-15deg);
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .memories {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .memory-text {
+        font-size: 0.9rem;
+      }
+
+      .memory-img {
+        height: 180px;
+      }
+
+      .next-btn {
+        width: 140px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<i>
+  <header>
+    <h1>Memory Lane</h1>
+  </header>
+
+  <section class="memories">
+    <!-- Memory 1 -->
+    <div class="memory-card">
+      <div class="memory-header"><h2>(02-05-2025)The First Hint</h2></div>
+      <img src="mem_1.jpg" alt="First Meeting" class="memory-img" />
+      <div class="memory-text">
+      BHAI?? BHAIIII darao tomar hocchee but btw.... It all started with that one love letter — the one I wrote when you said no one had ever written you one before. 🤭 I still remember every word, every pause, every heartbeat that went into it. The little details, the special mentions, the places I wrote about… they were all meant for you — every single line carried a piece of what I felt. That letter, “Where It All Began,” wasn’t just a name — it truly was the moment everything changed. The beginning of our story. The quiet spark that grew into something I never knew I’d find — something real, something ours.<br></div>
+      </div>
+    </div>
+
+    <!-- Memory 2 -->
+    <div class="memory-card">
+      <div class="memory-header"><h2>Our First Prediction</h2></div>
+      <img src="mem_2.jpg" alt="Coffee Date" class="memory-img" />
+      <div class="memory-text">
+        And remember that prediction we made on April 30th, 2025? About your mama’s baby — whether it would be a boy or a girl? 😄 We both confidently said it’d be a boy… and turns out, she was a girl! The only prediction we ever got wrong — but honestly, that one still makes me smile whenever I think about it. <br><br>
+       <b>(You can view every photo by click and hold method and then preview or download it)</b>
+      </div>
+    </div>
+
+    <!-- Memory 3 -->
+    <div class="memory-card">
+      <div class="memory-header"><h2>The Prediction Game 🤭</h2></div>
+      <img src="mem_3.jpg" alt="Rainy Walk" class="memory-img" />
+      <div class="memory-text">
+       Back in those early days, I used to throw random predictions like some wannabe fortune teller — “this kind of love will find you,” “you’ll meet someone special,” all that spooky stuff 😜. And guess what? I accidentally made them all come true by becoming that “someone special” myself. So basically, I predicted me into your life — kinda creepy, kinda funny, but totally meant to be. And will continue doing the FOREVER.
+      </div>
+    </div>
+
+    <!-- Memory 4 -->
+    <div class="memory-card">
+      <div class="memory-header"><h2>(05-05-2025) 🤭</h2></div>
+      <img src="mem_4.jpg" alt="Trip" class="memory-img" />
+      <div class="memory-text">
+       I still remember that day like it’s frozen in time — the first day I told you “I love you.” You said, “I love the person that you are,” and my heart just knew I had to say it — “And I love you” You looked so adorably shocked for a second, like you didn’t see it coming, but then you smiled and said “I love you too💗” That tiny moment felt huge — and when you said you’d forever remember that date… that’s when I knew it wasn’t just love, it was something real, something unforgettable.
+      </div>
+    </div>
+
+    <!-- Memory 5 -->
+    <div class="memory-card">
+      <div class="memory-header"><h2>Our First Date 💗</h2></div>
+      <img src="mem_7.jpg" alt="Anniversary" class="memory-img" />
+      <div class="memory-text">
+      June 20th, 2025 — Victoria Memorial. I still remember how the air felt that day, soft and golden, like even the world knew something special was happening. We were both a little shy, stealing glances and smiling for no reason, but somehow it never felt awkward — just… right. The conversations flowed, the laughter came easy, and the silence in between felt peaceful. And then came our first hug — warm, quiet, and perfect — followed by that shy little kiss on the cheek that said everything words couldn’t. That day, Victoria became our memory forever.
+      </div>
+    </div>
+
+    <!-- Memory 6 -->
+    <div class="memory-card">
+      <div class="memory-header"><h2>The Lake Dates ❤️</h2></div>
+      <img src="mem_8.jpg" alt="Anniversary" class="memory-img" />
+      <div class="memory-text"> 
+        The lake dates — those will always have a special place in my heart. On August 9th, 2025, under that calm sky and the mild evening lights, we shared our very first kiss — gentle, shy, and unforgettable. The world felt still for a moment, like it was just us. And when we came back on August 29th, it was like reliving that magic all over again — the same quiet atmosphere, this time rainy, but the same feeling, only deeper. The soft breeze, the cloudy skies, the peaceful silence, and that closeness — everything about those lake dates was pure romance, simple and beautiful. Get ready for many more and romantic ones my rosomalaiiiii 😋.
+      </div>
+    </div>
+
+    <!-- Memory 7 -->
+    <div class="memory-card">
+      <div class="memory-header"><h2>Our First Mingle Pujo</h2></div>
+      <img src="mem_9.jpg" alt="Anniversary" class="memory-img" />
+      <div class="memory-text">
+        This year’s Durga Puja was something else — our first ever mingle pujo together, and honestly, it felt magical. The lights, the crowd, the chaos — everything somehow felt calmer with you beside me. From pandal hopping to teasing each other over silly thingd, every moment had its own charm. You looked absolutely stunning, and I couldn’t stop sneaking glances. We laughed, clicked pictures, and shared those little moments that make memories last forever. It wasn’t just another Durga Puja — it was our Durga Puja, the first one where we celebrated not just the festival, but us. And those two metro rides on Panchami .... I cant explain them in wordsss 😭❤️.
+      </div>
+    </div>
+  </section>
+
+  <!-- Move Next Button -->
+  <a href="letters.html" class="next-btn">Move Next →</a>
+
+  <footer>
+    <p>© 2025 Our Journey Together</p>
+  </footer>
+  <script>
+function startCelebration() {
+    window.location.href = 'memory.html';
+}
+
+// Floating love emojis across the full screen
+const emojis = ['❤️','💕','❤️','💕','💗','❤️'];
+function createLoveEmoji() {
+    const love = document.createElement('div');
+    love.className = 'love';
+    love.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    love.style.left = Math.random() * 100 + 'vw';
+    love.style.top = Math.random() * 100 + 'vh';
+    love.style.fontSize = (16 + Math.random() * 30) + 'px';
+    love.style.animationDuration = (5 + Math.random() * 5) + 's';
+    document.body.appendChild(love);
+
+    setTimeout(() => love.remove(), 9000);
+}
+
+setInterval(createLoveEmoji, 500);
+</script>
+</i>
+</body>
+</html>
+
